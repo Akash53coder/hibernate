@@ -8,8 +8,8 @@ public class AadahrTester {
 	public static void main(String[] args) throws IOException {
 		AadharDAOImpl aadhar = new AadharDAOImpl();
 		aadhar.saveAadharEntity();
-		//aadhar.readAadharEntity();
-		//aadhar.updateAadharEntity();
-		//aadhar.deleteAadharEntity();
+		aadhar.readAadharEntity();
+		aadhar.updateAadharEntity();
+		aadhar.deleteAadharEntity();
 	}
 }
