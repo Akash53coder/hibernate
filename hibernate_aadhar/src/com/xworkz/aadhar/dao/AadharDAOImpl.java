@@ -35,7 +35,7 @@ public class AadharDAOImpl implements AadharDAO {
 
 			transaction = session.beginTransaction();
 
-			AadharEntity aadhar = new AadharEntity(1432, "adarsh", true);
+			AadharEntity aadhar = new AadharEntity("adarsh", true);
 			session.save(aadhar);
 			// session.persist(aadhar);
 
@@ -120,6 +120,7 @@ public class AadharDAOImpl implements AadharDAO {
 			AadharEntity aadhar = new AadharEntity(1212, "zoya", true);
 			session.delete(aadhar);
 			transaction.commit();
+			//closing sessionFactory singleton after performing all operations
 			SessionFactoryProvider.closeSessionFactory();
 		} catch (HibernateException exp) {
 			transaction.rollback();
