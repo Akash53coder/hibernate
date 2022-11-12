@@ -18,8 +18,15 @@ public class CustomerDAOImplJoins {
 	 */
 	public void implicitJoins() {
 		Session session = FACTORY.openSession();
-		List<Object[]> list = session.createQuery("select c.customerId, c.Address.addressId from CustomerEntity c where "
+		 session.createQuery("select c.customerId, c.Address.addressId from CustomerEntity c where "
 				+ "c.Address is not null").list();
+		session.close();
+	}
+	
+	public void explicitJoins() {
+		Session session = FACTORY.openSession();
+		session.createQuery("select c.customerId, a.addressId from CustomerEntity c Inner join "
+				+ "c.Address a").list();
 		session.close();
 	}
 }
