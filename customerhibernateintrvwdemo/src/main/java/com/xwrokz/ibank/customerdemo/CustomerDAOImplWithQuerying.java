@@ -19,11 +19,8 @@ public class CustomerDAOImplWithQuerying {
 	public void readAllCustomers() {
 		Session session = FACTORY.openSession();
 		String sql = "select * FROM Customer_Details";
-		List list = session.createSQLQuery(sql).list();
-		for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-			CustomerEntity customer =  (CustomerEntity)iterator.next();
-			System.out.println(customer);
-		}
+		CustomerEntity customer1 = (CustomerEntity) session.createSQLQuery(sql).uniqueResult();
+		System.out.println(customer1);
 		session.close();
 	}
 	
@@ -33,11 +30,8 @@ public class CustomerDAOImplWithQuerying {
 	public void getCustomersWithAgeAboveFiftyUsingQuery() {
 		Session session = FACTORY.openSession();
 		String sql = "select d.CUSTOMERID, d.CUSTOMERNAME from Customer_Details d where d.CUSTOMERAGE>50";
-		List list = session.createSQLQuery(sql).list();
-		for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-			CustomerEntity customer =  (CustomerEntity)iterator.next();
-			System.out.println(customer);
-		}
+		CustomerEntity customer1 = (CustomerEntity) session.createSQLQuery(sql).uniqueResult();
+		System.out.println(customer1);
 		session.close();
 	}
 	
@@ -51,19 +45,16 @@ public class CustomerDAOImplWithQuerying {
 	public void getCustomersWithAgeAboveFiftyUsingHQL() {
 		Session session = FACTORY.openSession();
 		String sql = "FROM CustomerEntity c where c.age > 50";
-		List list = session.createQuery(sql).list();
-		for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-			CustomerEntity customer =  (CustomerEntity)iterator.next();
-			System.out.println(customer);
-		}
+		CustomerEntity customer1 = (CustomerEntity) session.createSQLQuery(sql).uniqueResult();
+		System.out.println(customer1);
 		session.close();
 	}
 	
 	public void getCustomersNamesAndAgeWithAgeAboveFiftyHQL() {
 		Session session = FACTORY.openSession();
 		String sql = "SELECT c.customerName, c.age  FROM CustomerEntity c where c.age > 50";
-		List list = session.createQuery(sql).list();
-		System.out.println(list);
+		CustomerEntity customer1 = (CustomerEntity) session.createSQLQuery(sql).uniqueResult();
+		System.out.println(customer1);
 		session.close();
 	}
 	
@@ -84,10 +75,9 @@ public class CustomerDAOImplWithQuerying {
 	 */
 	public void sqlInjectionDemo(String name, String anotherName) {
 		Session session = FACTORY.openSession();
-//		String p = "'" + (1 == 1) + "'";
-		List list = session.createQuery("from CustomerEntity where customerName = "
-				 + name + " or " + anotherName).list();
-		System.out.println(list);
+		CustomerEntity customer1 = (CustomerEntity) session.createQuery("from CustomerEntity where customerName = "
+				 + name + " or " + anotherName).uniqueResult();
+		System.out.println(customer1);
 		session.close();
 	}
 	
@@ -133,7 +123,7 @@ public class CustomerDAOImplWithQuerying {
 //		query.setString("name", name);//deprecated since 5.2
 		query.setParameter("name", name);
 		query.setParameter("age", age);
-		System.out.println(query.list());
+		System.out.println(query.uniqueResult());
 		session.close();
 	}
 	

@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- dialect used to conversion of HQL query to particular/native SQL queries 
+		     as hibernate is DB agnostic -->
+		     
+		<!--  hibernate. hbm2ddl. auto Automatically validates/exports DDL schema 
+		      to the database when the SessionFactory is created/start up. 
+		      With create : it creates a table
+		      with update : it updates the existing table
+		      with create-drop : it first  creates a table and drops it when session factory
+		      is closed -->
+		       
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hibernateinterview</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">Akash@006</property>
+		<property name="hibernate.show_sql">true</property>
+		<property name="hbm2ddl.auto">update</property>
+		<property name="hibernate.cache.use_second_level_cache">true</property>
+		<property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.internal.EhcacheRegionFactory</property>
+		
+		<!-- caching with queries -->
+		<property name="hibernate.cache.use_query_cache">true</property>
+		
+		<!-- for mapping class attribute is used, if mapping is done using annotation
+		     or else if my mapping is done using xml (Customer.hbm.xml) then use
+		      mapping resource <mapping resource="Customer.hbm.xml" />
+		      -->
+		<mapping class="com.xworkz.caching.CustomerEntity" />
+	</session-factory>
+</hibernate-configuration>
+
+ 
