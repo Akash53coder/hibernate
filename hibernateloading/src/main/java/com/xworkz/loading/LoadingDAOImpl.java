@@ -11,6 +11,7 @@ public class LoadingDAOImpl implements LoadingDAO{
 
 	private static final SessionFactory FACTORY = HibernateUtil.getSessionFactory();
 	
+	//code to demonstrate OneToMany mapping without fetching techniques
 	@Override
 	public void getDetails() {
 		Session session = FACTORY.openSession();
@@ -22,6 +23,23 @@ public class LoadingDAOImpl implements LoadingDAO{
 			System.out.println(user.getUserid()+ " -- " + user.getUsername() + " -- " + laptops);
 		}
 		session.close();
+	}
+
+	/*
+	 * Fetch techniques: 
+	 * Eager and lazy loadings are design patterns.
+	 * Observe the query hibernate fires, with lazy loading it won't get the laptop details 
+	 * with user details in a single shot
+	 * 
+	 */
+	@Override
+	public void getDetails(int id) {
+
+		Session session = FACTORY.openSession();
+		UserEntity user = session.get(UserEntity.class, id);
+		System.out.println(user);
+		session.close();
+	
 	}
 
 }

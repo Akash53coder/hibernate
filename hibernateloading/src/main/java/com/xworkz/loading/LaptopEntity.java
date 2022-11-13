@@ -11,6 +11,8 @@ public class LaptopEntity {
 	@Id
 	private int laptopid;
 	private String laptopname;
+	//here userid is optional if we use @JoinColumn(name = "userid") in UserEntity
+	private int userid;
 	
 	public LaptopEntity() {
 		super();
@@ -30,6 +32,15 @@ public class LaptopEntity {
 
 	public void setLaptopname(String laptopname) {
 		this.laptopname = laptopname;
+	}
+	
+
+	public int getUserid() {
+		return userid;
+	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
 	}
 
 	@Override

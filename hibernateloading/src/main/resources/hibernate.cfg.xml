@@ -20,6 +20,7 @@
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password">Akash@006</property>
 		<property name="hbm2ddl.auto">update</property>
+		<property name="hibernate.show_sql">true</property>
 		
 		<!-- for mapping class attribute is used, if mapping is done using annotation
 		     or else if my mapping is done using xml (Customer.hbm.xml) then use

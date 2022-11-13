@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -19,8 +20,10 @@ public class UserEntity {
 	
 	private String username;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "userid") 
+//	@OneToMany(fetch = FetchType.EAGER)
+//	@JoinColumn(name = "userid") //for this no need to add userid in LaptopEntity //or
+	//in order to add mappedBy parameter with OneToMany I need to have userid in LaptopEntity
+	@OneToMany(mappedBy = "userid", fetch = FetchType.LAZY)
 	private List<LaptopEntity> laptops = new ArrayList<>();
 	
 	public UserEntity() {
@@ -51,9 +54,10 @@ public class UserEntity {
 		this.laptops = laptops;
 	}
 
-	@Override
-	public String toString() {
-		return "UserEntity [userid=" + userid + ", username=" + username + ", laptops=" + laptops + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "UserEntity [userid=" + userid + ", username=" + username + ", laptops=" + laptops + "]";
+//	}
+
 	
 }
