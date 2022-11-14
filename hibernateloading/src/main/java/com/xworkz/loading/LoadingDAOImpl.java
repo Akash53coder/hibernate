@@ -30,7 +30,7 @@ public class LoadingDAOImpl implements LoadingDAO{
 	 * Eager and lazy loadings are design patterns.
 	 * Observe the query hibernate fires, with lazy loading it won't get the laptop details 
 	 * with user details in a single shot
-	 * 
+	 * with eager loading it gets the data from association as well.
 	 */
 	@Override
 	public void getDetails(int id) {

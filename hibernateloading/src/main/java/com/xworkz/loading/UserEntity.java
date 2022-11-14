@@ -54,10 +54,10 @@ public class UserEntity {
 		this.laptops = laptops;
 	}
 
-//	@Override
-//	public String toString() {
-//		return "UserEntity [userid=" + userid + ", username=" + username + ", laptops=" + laptops + "]";
-//	}
+	@Override
+	public String toString() {
+		return "UserEntity [userid=" + userid + ", username=" + username + "]";
+	}
 
 	
 }
